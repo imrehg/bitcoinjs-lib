@@ -232,7 +232,7 @@ BIP32.prototype.derive_child = function(i) {
         ret.chain_code  = ir;
 
         ret.eckey = new Bitcoin.ECKey();
-        ret.eckey.pub = k;
+        ret.eckey.pubComp = k;
         ret.has_private_key = false;
     }
 
@@ -242,7 +242,7 @@ BIP32.prototype.derive_child = function(i) {
     ret.depth   = this.depth + 1;
 
     ret.eckey.setCompressed(true);
-    ret.eckey.pubKeyHash = Bitcoin.Util.sha256ripe160(ret.eckey.pub.getEncoded(true));
+    ret.eckey.pubKeyHashComp = Bitcoin.Util.sha256ripe160(ret.eckey.pub.getEncoded(true));
 
     ret.build_extended_public_key();
     ret.build_extended_private_key();
